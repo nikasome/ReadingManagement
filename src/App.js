@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import firebase from './firebase.js';
+import UserIcon from './components/atoms/UserIcon/index.js';
 import './App.css';
 
 class App extends Component {
@@ -26,12 +27,18 @@ class App extends Component {
     return (
       <div>
         <p>Name: {this.state.user && this.state.user.displayName}</p>
-        <img src={this.state.user && this.state.user.photoURL} alt="icon" />
 
         {this.state.user ? (
-          <button onClick={this.logout}>Google logout</button>
+          <div>
+            <UserIcon style={{ display: 'block' }}>
+              {this.state.user.photoURL}
+            </UserIcon>
+            <button onClick={this.logout}>Google Logout</button>
+          </div>
         ) : (
-          <button onClick={this.login}>Google Login</button>
+          <div>
+            <button onClick={this.login}>Google Login</button>
+          </div>
         )}
       </div>
     );
