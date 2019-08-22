@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import firebase from './firebase.js';
-import UserIcon from './components/atoms/UserIcon/index.js';
+import HeadBar from './components/molecules/AppBar/index.js';
 import './App.css';
 
 class App extends Component {
@@ -26,13 +26,14 @@ class App extends Component {
   render() {
     return (
       <div>
+        {this.state.user ? (
+          <HeadBar photoURL={this.state.user.photoURL} />
+        ) : null}
+
         <p>Name: {this.state.user && this.state.user.displayName}</p>
 
         {this.state.user ? (
           <div>
-            <UserIcon style={{ display: 'block' }}>
-              {this.state.user.photoURL}
-            </UserIcon>
             <button onClick={this.logout}>Google Logout</button>
           </div>
         ) : (
